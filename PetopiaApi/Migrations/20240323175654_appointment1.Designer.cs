@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PetopiaApi.Context;
 
@@ -11,9 +12,11 @@ using PetopiaApi.Context;
 namespace PetopiaApi.Migrations
 {
     [DbContext(typeof(PetopiaContext))]
-    partial class PetopiaContextModelSnapshot : ModelSnapshot
+    [Migration("20240323175654_appointment1")]
+    partial class appointment1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -298,10 +301,6 @@ namespace PetopiaApi.Migrations
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Date")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("From")
                         .HasColumnType("nvarchar(max)");

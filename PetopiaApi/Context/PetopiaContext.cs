@@ -13,5 +13,6 @@ namespace PetopiaApi.Context
         public DbSet<Pets> Pets { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<PetShopItem> PetShopItems { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
     }
 }

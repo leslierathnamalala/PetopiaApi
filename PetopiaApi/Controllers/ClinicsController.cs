@@ -18,7 +18,16 @@ namespace PetopiaApi.Controllers
             _context = context;
         }
 
+        // GET: api/Clinics
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<Clinic>>> GetClinics()
+        {
+            return await _context.Clinics.ToListAsync();
+        }
+
         // GET: api/Clinics/5
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<Clinic>> GetClinic(long id)
         {
