@@ -152,7 +152,7 @@ namespace PetopiaApi.Controllers
                     ImageUrl2 = advertisementRequest.ImageUrl2,
                     ImageUrl3 = advertisementRequest.ImageUrl3,
                     CreatedOn = DateTime.Now,
-                    IsDeleted = false,
+                    IsDeleted = false
                 };
 
                 _context.Advertisements.Add(advertisement);

@@ -16,6 +16,7 @@ namespace PetopiaApi.Models
         public string? District { get; set; }
         public string? Province { get; set; }
         public string? City { get; set; }
+        public string? UserImage { get; set; }
         public int? ZipCode { get; set; }
         public UserType UserType { get; set; }
     }

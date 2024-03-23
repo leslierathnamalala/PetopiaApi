@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PetopiaApi.Context;
 
@@ -11,9 +12,11 @@ using PetopiaApi.Context;
 namespace PetopiaApi.Migrations
 {
     [DbContext(typeof(PetopiaContext))]
-    partial class PetopiaContextModelSnapshot : ModelSnapshot
+    [Migration("20240323133128_User233")]
+    partial class User233
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -256,6 +259,9 @@ namespace PetopiaApi.Migrations
                     b.Property<string>("ImageUrl3")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -373,50 +379,6 @@ namespace PetopiaApi.Migrations
                     b.HasKey("ClinicId");
 
                     b.ToTable("Clinics");
-                });
-
-            modelBuilder.Entity("PetopiaApi.Models.PetShopItem", b =>
-                {
-                    b.Property<long>("PetShopItemsId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("PetShopItemsId"));
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Heading")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl3")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ItemType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Price")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("PetShopItemsId");
-
-                    b.ToTable("PetShopItems");
                 });
 
             modelBuilder.Entity("PetopiaApi.Models.Pets", b =>

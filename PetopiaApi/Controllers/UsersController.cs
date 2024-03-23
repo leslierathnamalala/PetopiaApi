@@ -19,6 +19,19 @@ namespace PetopiaApi.Controllers
             _context = context;
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Users>> GetUsers(long id)
+        {
+            var users = await _context.Users.FindAsync(id);
+
+            if (users == null)
+            {
+                return NotFound();
+            }
+
+            return users;
+        }
+
         [HttpPost("GetUserByEmail")]
         public async Task<ActionResult<Users>> GetTestById(GetUserModel model)
         {
@@ -47,6 +60,41 @@ namespace PetopiaApi.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetUsers", new { id = users.UserId }, users);
+        }
+
+        // PUT: api/Users/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutUser(long id, Users users)
+        {
+            if (id != users.UserId)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(users).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UserExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        private bool UserExists(long id)
+        {
+            return _context.Users.Any(e => e.UserId == id);
         }
     }
 }
